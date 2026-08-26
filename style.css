@@ -1,0 +1,186 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #111;
+    overflow: hidden;
+}
+
+header {
+    width: 100vw;
+    height: 10vh;
+    background-color: rgb(31, 43, 112);
+}
+
+#logo {
+    width: 100px;
+    margin-left: 50px;
+}
+
+main {
+    display: flex;
+    width: 100vw;
+    height: 90vh;
+}
+
+#esquerda {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    background-color: rgb(44, 44, 44);
+
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    color: rgb(255, 208, 0);
+}
+
+#direita {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #050505;
+    padding: 25px;
+}
+
+
+/* TERMINAL */
+
+.terminal {
+    width: 95%;
+    height: 90%;
+
+    background-color: #050505;
+
+    border: 1px solid #333;
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    font-family: Consolas, "Courier New", monospace;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* BARRA */
+
+.terminal-top {
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+
+    background-color: #111;
+    border-bottom: 1px solid #333;
+}
+
+
+.titulo-terminal {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    color: #888;
+    font-size: 13px;
+}
+
+
+/* HISTÓRICO */
+
+#terminal-body {
+    flex: 1;
+
+    padding: 20px;
+
+    overflow-y: auto;
+
+    color: white;
+
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.linha-sistema {
+    color: #666;
+}
+
+.mensagem-usuario {
+    color: white;
+    margin-top: 12px;
+}
+
+.mensagem-alfred {
+    color: #00d9ff;
+    margin-bottom: 10px;
+}
+
+
+/* COMANDO */
+
+.linha-comando {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 15px;
+
+    background-color: #080808;
+
+    border-top: 1px solid #333;
+}
+
+.prompt {
+    color: rgb(255, 208, 0);
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+#pedido {
+    flex: 1;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 16px;
+}
+
+#pedido::placeholder {
+    color: #555;
+}
+
+
+/* BOTÃO */
+
+#btn-pedido {
+    background-color: transparent;
+
+    border: 1px solid rgb(255, 208, 0);
+
+    color: rgb(255, 208, 0);
+
+    padding: 7px 12px;
+
+    font-family: Consolas, "Courier New", monospace;
+
+    cursor: pointer;
+}
+
+#btn-pedido:hover {
+    background-color: rgb(255, 208, 0);
+    color: black;
+}
