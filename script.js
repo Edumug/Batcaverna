@@ -2,9 +2,6 @@ const botao = document.getElementById("btn-pedido");
 const input = document.getElementById("pedido");
 const terminal = document.getElementById("terminal-body");
 
-
-// COMANDOS E RESPOSTAS DO ALFRED
-
 const respostas = {
     "batmóvel": "Preparando o Batmóvel, senhor.",
     "batmovel": "Preparando o Batmóvel, senhor.",
@@ -51,17 +48,11 @@ function enviarPedido() {
 
     comando.className = "mensagem-usuario";
 
-    comando.textContent = "BATCAVE@WAYNE: " + pedido;
+    comando.textContent = "BATCAVERNA@WAYNE: " + pedido;
 
     terminal.appendChild(comando);
 
-
-    // LIMPA O INPUT
-
     input.value = "";
-
-
-    // RESPOSTA DO ALFRED
 
     setTimeout(() => {
 
@@ -84,21 +75,14 @@ function enviarPedido() {
 
         terminal.appendChild(resposta);
 
-
-        // DESCE O TERMINAL AUTOMATICAMENTE
-
         terminal.scrollTop = terminal.scrollHeight;
 
     }, 400);
 }
 
 
-// BOTÃO ENTER
-
 botao.addEventListener("click", enviarPedido);
 
-
-// TECLA ENTER DO TECLADO
 
 input.addEventListener("keydown", (event) => {
 
@@ -108,7 +92,5 @@ input.addEventListener("keydown", (event) => {
 
 });
 
-
-// FOCA NO CAMPO AUTOMATICAMENTE
 
 input.focus();
