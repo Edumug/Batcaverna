@@ -52,77 +52,40 @@ const respostas = {
     "liga da justiça": "A Liga da Justiça está a caminho, senhor.",
 
 
-    // ==========================================
-    // VILÕES
-    // ==========================================
+
 
     "vilões":
         "Quais dos vilões você gostaria de saber? O Coringa, o Pinguim, a Mulher-Gato, o Charada, o Duas-Caras, o Espantalho, o Bane ou o Exterminador.",
 
-    "coringa":
-        `O Coringa
-Nome: Desconhecido
-Ocupação: Criminoso
-Habilidades: Inteligência criminosa, manipulação, química e engenharia.
+    "mulher gato":
+    "Aqui estão os arquivos de Selina Kyle, senhor",
 
-Sobre: O Coringa é um dos maiores criminosos de Gotham.
-"Por que está tão sério?"`,
-
-    "pinguim":
-        `O Pinguim
-Nome: Oswald Cobblepot
-Ocupação: Criminoso
-Habilidades: Inteligência, liderança e conhecimento em aves.
-
-Sobre: O Pinguim é um dos maiores criminosos de Gotham.`,
-
-    "mulher-gato":
-        `Mulher-Gato
-Nome: Selina Kyle
-Ocupação: Ladrã
-Habilidades: Furtividade, acrobacias e combate.
-
-Sobre: Mulher-Gato é uma anti-heroína e às vezes vilã.`,
+    "selina":
+        "Aqui estão os arquivos de Selina Kyle, senhor",
 
     "charada":
-        `O Charada
-Nome: Edward Nigma
-Ocupação: Criminoso
-Habilidades: Inteligência, enigmas e quebra-cabeças.
+        "Aqui estão os arquivos de Edward Nigma, senhor",
 
-Sobre: O Charada é obcecado por provar que é mais inteligente que os outros.`,
+    "nigma":
+        "Aqui estão os arquivos de Edward Nigma, senhor",
 
-    "duas-caras":
-        `O Duas-Caras
-Nome: Harvey Dent
-Ocupação: Criminoso
-Habilidades: Manipulação e combate.
+    "duas caras":
+        "Aqui estão os arquivos de Harvey Dent, senhor",
 
-Sobre: O Duas-Caras toma suas decisões com base no lançamento de uma moeda.`,
+    "dent":
+        "Aqui estão os arquivos de Harvey Dent, senhor",
 
     "espantalho":
-        `O Espantalho
-Nome: Jonathan Crane
-Ocupação: Criminoso
-Habilidades: Uso de toxinas do medo.
+        "Aqui estão os arquivos de Jonathan Crane, senhor",
 
-Sobre: O Espantalho utiliza toxinas para provocar medo.`,
-
-    "bane":
-        `O Bane
-Nome: Desconhecido
-Ocupação: Criminoso
-Habilidades: Força e combate.
-
-Sobre: Bane é conhecido por sua enorme força física.`,
+    "crane":
+        "Aqui estão os arquivos de Jonathan Crane, senhor",
 
     "exterminador":
-        `O Exterminador
-Nome: Slade Wilson
-Ocupação: Mercenário
-Habilidades: Combate e estratégia.
+        "Aqui estão os arquivos de Slade Wilson, senhor",
 
-Sobre: O Exterminador é um mercenário extremamente habilidoso.`,
+    "slade":
+        "Aqui estão os arquivos de Slade Wilson, senhor",
 
 
     // ==========================================
@@ -141,7 +104,44 @@ Sobre: O Exterminador é um mercenário extremamente habilidoso.`,
 const imagens = {
 
     "coringa":
-        "img/batman.png",
+        "img/coringa.jpg",
+
+    "pinguim":
+        "img/pingu.jpg",
+        
+    "mulher gato":
+        "img/gato.jpg",
+    
+    "selina":
+        "img/gato.jpg",
+
+    "charada":
+        "img/nigma.jpg",
+    
+    "nigma":
+        "img/nigma.jpg",
+    
+    "espantalho":
+        "img/palha.jpg",
+    
+    "crane":
+        "img/palha.jpg",
+    
+    "bane":
+        "img/bane.jpg",
+    
+    "exterminador":
+        "img/slade.jpg",
+    
+    "slade":
+        "img/slade.jpg",
+
+    "duas caras":
+        "img/caras.jpg",
+    
+    "dent":
+        "img/caras.jpg"
+
 
 };
 
@@ -169,6 +169,37 @@ function mostrarImagem(url, nome) {
 }
 
 
+
+async function perguntarParaIA(pergunta) {
+
+    try {
+
+        const resposta = await fetch("/api/alfred", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                pergunta: pergunta
+            })
+
+        });
+
+        const dados = await resposta.json();
+
+        return dados.resposta;
+
+    } catch (erro) {
+
+        console.error(erro);
+
+        return "Lamento, senhor Wayne. Não consegui acessar meus sistemas.";
+
+    }
+}
 // ==========================================
 // ENVIAR PEDIDO
 // ==========================================
@@ -201,8 +232,9 @@ function enviarPedido() {
     // ==========================================
     // RESPOSTA DO ALFRED
     // ==========================================
+    
 
-    setTimeout(() => {
+    setTimeout(async () => {
 
         const resposta = document.createElement("div");
 
@@ -221,25 +253,33 @@ function enviarPedido() {
 
         const chave = Object.keys(respostas).find(comando => {
 
-            const comandoNormalizado = comando
-                .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, "");
+    const comandoNormalizado = comando
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
 
-            return texto.includes(comandoNormalizado);
+    return texto === comandoNormalizado;
 
-        });
+});
 
 
         // ==========================================
         // MOSTRA A RESPOSTA
         // ==========================================
 
-        resposta.textContent =
-            "Alfred: " +
-            (respostas[chave] ||
-                "Não reconheço esse comando, senhor.");
+        if (chave) {
 
-        terminal.appendChild(resposta);
+    resposta.textContent =
+        "Alfred: " + respostas[chave];
+
+} else {
+
+    resposta.textContent =
+        "Alfred: " + await perguntarParaIA(pedido);
+
+}
+
+terminal.appendChild(resposta);
 
 
         // ==========================================
@@ -248,9 +288,14 @@ function enviarPedido() {
 
         const imagemChave = Object.keys(imagens).find(nome => {
 
-            return texto.includes(nome);
+    const nomeNormalizado = nome
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
 
-        });
+    return texto === nomeNormalizado;
+
+});
 
 
         // ==========================================
