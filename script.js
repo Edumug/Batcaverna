@@ -192,12 +192,6 @@ async function perguntarParaIA(pergunta) {
 
         return dados.resposta;
 
-    } catch (erro) {
-
-        console.error(erro);
-
-        return "Lamento, senhor Wayne. Não consegui acessar meus sistemas.";
-
     }
 }
 // ==========================================
