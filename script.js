@@ -169,31 +169,6 @@ function mostrarImagem(url, nome) {
 }
 
 
-
-async function perguntarParaIA(pergunta) {
-
-    try {
-
-        const resposta = await fetch("/api/alfred", {
-
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify({
-                pergunta: pergunta
-            })
-
-        });
-
-        const dados = await resposta.json();
-
-        return dados.resposta;
-
-    }
-}
 // ==========================================
 // ENVIAR PEDIDO
 // ==========================================
