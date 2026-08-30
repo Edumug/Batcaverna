@@ -177,3 +177,12 @@ main {
 .mensagem-alfred {
     white-space: pre-line;
 }
+
+.imagem-alfred {
+    display: block;
+    max-width: 550px;
+    max-height: 500px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
