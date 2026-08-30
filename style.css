@@ -32,9 +32,7 @@ main {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
     background-color: rgb(44, 44, 44);
-
     font-family: "Comic Sans MS", "Comic Sans", cursive;
     color: rgb(255, 208, 0);
 }
@@ -44,7 +42,6 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-
     background-color: #050505;
     padding: 25px;
 }
@@ -52,52 +49,37 @@ main {
 .terminal {
     width: 95%;
     height: 90%;
-
     background-color: #050505;
-
     border: 1px solid #333;
     border-radius: 8px;
-
     overflow: hidden;
-
     font-family: Consolas, "Courier New", monospace;
-
     display: flex;
     flex-direction: column;
 }
 
 .terminal-top {
     height: 45px;
-
     display: flex;
     align-items: center;
-
     position: relative;
-
     background-color: #111;
     border-bottom: 1px solid #333;
 }
-
 
 .titulo-terminal {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-
     color: #888;
     font-size: 13px;
 }
 
-
 #terminal-body {
     flex: 1;
-
     padding: 20px;
-
     overflow-y: auto;
-
     color: white;
-
     font-size: 16px;
     line-height: 1.6;
 }
@@ -114,20 +96,15 @@ main {
 .mensagem-alfred {
     color: #00d9ff;
     margin-bottom: 10px;
+    white-space: pre-line;
 }
-
-
-/* COMANDO */
 
 .linha-comando {
     display: flex;
     align-items: center;
     gap: 8px;
-
     padding: 10px 15px;
-
     background-color: #080808;
-
     border-top: 1px solid #333;
 }
 
@@ -139,14 +116,10 @@ main {
 
 #pedido {
     flex: 1;
-
     border: none;
     outline: none;
-
     background: transparent;
-
     color: white;
-
     font-family: Consolas, "Courier New", monospace;
     font-size: 16px;
 }
@@ -157,25 +130,16 @@ main {
 
 #btn-pedido {
     background-color: transparent;
-
     border: 1px solid rgb(255, 208, 0);
-
     color: rgb(255, 208, 0);
-
     padding: 7px 12px;
-
     font-family: Consolas, "Courier New", monospace;
-
     cursor: pointer;
 }
 
 #btn-pedido:hover {
     background-color: rgb(255, 208, 0);
     color: black;
-}
-
-.mensagem-alfred {
-    white-space: pre-line;
 }
 
 .imagem-alfred {
@@ -185,4 +149,56 @@ main {
     margin-top: 10px;
     margin-bottom: 15px;
     border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.imagem-alfred:hover {
+    opacity: 0.85;
+    transform: scale(1.02);
+}
+
+/* IMAGEM AMPLIADA */
+.imagem-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.92);
+    cursor: pointer;
+}
+
+.imagem-ampliada {
+    display: block;
+    max-width: 90vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 0 35px rgba(255, 208, 0, 0.25);
+    cursor: default;
+}
+
+.fechar-imagem {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    border: 1px solid rgb(255, 208, 0);
+    background: #080808;
+    color: rgb(255, 208, 0);
+    font-size: 32px;
+    line-height: 35px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.fechar-imagem:hover {
+    background: rgb(255, 208, 0);
+    color: #000;
 }
